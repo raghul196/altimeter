@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Altimeter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-blue-400">Altimeter</div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-blue-400 transition">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-blue-400 transition">About</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-blue-400 transition">Contact</a>
+                    <a href="privacy.html" class="text-gray-300 hover:text-blue-400 transition">Privacy</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-blue-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="index.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">Home</a>
+                <a href="about.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">About</a>
+                <a href="contact.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">Contact</a>
+                <a href="privacy.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">Privacy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-6">Privacy Policy</h1>
+
+        <p class="text-gray-400 mb-6">Last updated: February 2026</p>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Our Commitment to Privacy</h2>
+            <p class="text-gray-300">
+                Altimeter is designed with privacy in mind. We believe your location and sensor data should remain yours.
+                This privacy policy explains how we handle your data when you use our application.
+            </p>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Data Collection</h2>
+            <p class="text-gray-300 mb-4">
+                Altimeter accesses the following data from your device:
+            </p>
+            <ul class="space-y-3 text-gray-300">
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Location Data:</strong> Your GPS coordinates (latitude, longitude) and altitude to display your current position and elevation.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Device Orientation:</strong> Pitch and roll measurements from your device's gyroscope and accelerometer for the inclinometer feature.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Device Information:</strong> Basic browser and device information (user agent, screen size) for ensuring compatibility and responsive design.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">How We Use Your Data</h2>
+            <p class="text-gray-300 mb-4">
+                All data processing happens locally in your browser. Here's how your data is used:
+            </p>
+            <ul class="space-y-3 text-gray-300">
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Display Real-Time Information:</strong> Your location and sensor data are used solely to display current readings in the app interface.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Map Visualization:</strong> Your coordinates are sent to Google Maps API to display your location on the interactive map.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Elevation Lookup:</strong> When GPS altitude is unavailable, your coordinates are sent to Google Elevation API to retrieve altitude data.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Data Storage</h2>
+            <p class="text-gray-300 mb-4">
+                <strong>We do not store or log your data.</strong> Here's what this means:
+            </p>
+            <ul class="space-y-3 text-gray-300">
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span>No location history is saved or transmitted to any server</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span>No sensor data is recorded beyond the current browser session</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span>All data exists only in your browser's memory while the app is running</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span>Closing the browser tab immediately clears all sensor and location data</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span>No databases, logs, or persistent storage mechanisms are used</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Third-Party Services</h2>
+            <p class="text-gray-300 mb-4">
+                Altimeter uses the following third-party services:
+            </p>
+            <div class="space-y-4 text-gray-300">
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-300 mb-2">Google Maps JavaScript API</h3>
+                    <p class="mb-2">
+                        Used to display your location on an interactive map. Your coordinates are sent to Google's servers to render the map.
+                    </p>
+                    <p class="text-sm text-gray-400">
+                        Google's Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition">policies.google.com/privacy</a>
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-300 mb-2">Google Elevation API</h3>
+                    <p class="mb-2">
+                        Used as a fallback to determine altitude when GPS altitude is unavailable. Your coordinates are sent to Google's servers to retrieve elevation data.
+                    </p>
+                    <p class="text-sm text-gray-400">
+                        Google's Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition">policies.google.com/privacy</a>
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-300 mb-2">Tailwind CSS CDN</h3>
+                    <p>
+                        Used to load styling framework from a content delivery network. No personal data is transmitted; only standard HTTP request data.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Cookies and Tracking</h2>
+            <p class="text-gray-300">
+                <strong>Altimeter does not use cookies or any tracking mechanisms.</strong> We do not track your usage, collect analytics,
+                or use any advertising identifiers. The only data exchanged is what's necessary for the app's core functionality
+                (displaying location, altitude, and sensor data).
+            </p>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Permissions</h2>
+            <p class="text-gray-300 mb-4">
+                Altimeter requests the following permissions from your browser:
+            </p>
+            <ul class="space-y-3 text-gray-300">
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Location Access:</strong> Required to obtain your GPS coordinates and altitude. You can deny or revoke this permission at any time through your browser settings.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Motion & Orientation (iOS 13+):</strong> Required to access gyroscope and accelerometer data for the inclinometer. On iOS devices, you must explicitly grant this permission.</span>
+                </li>
+            </ul>
+            <p class="text-gray-300 mt-4">
+                You have full control over these permissions and can revoke them at any time. Without these permissions,
+                the app cannot function, but no data is collected or stored if you choose not to grant access.
+            </p>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Data Security</h2>
+            <p class="text-gray-300">
+                Since all data processing happens locally in your browser and we don't transmit or store any personal data on our servers,
+                there is minimal security risk. The only data transmitted is to Google's APIs (Maps and Elevation) over secure HTTPS connections.
+                We recommend using Altimeter only on trusted devices and networks, especially when location data is sensitive.
+            </p>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Children's Privacy</h2>
+            <p class="text-gray-300">
+                Altimeter is not directed at children under the age of 13. We do not knowingly collect any information from children.
+                If you are a parent or guardian and believe your child has used this app, please contact us.
+            </p>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Your Rights</h2>
+            <p class="text-gray-300 mb-4">
+                You have the following rights regarding your data:
+            </p>
+            <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Access:</strong> Since no data is stored, there is no data to access beyond what's displayed in the app in real-time.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Deletion:</strong> Simply close the browser tab to clear all data from memory.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-400 mr-2">•</span>
+                    <span><strong>Opt-Out:</strong> You can stop using the app at any time or revoke permissions through your browser settings.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Changes to This Policy</h2>
+            <p class="text-gray-300">
+                We may update this privacy policy from time to time to reflect changes in our practices or legal requirements.
+                Any changes will be posted on this page with an updated "Last updated" date. We encourage you to review this policy
+                periodically.
+            </p>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Contact Us</h2>
+            <p class="text-gray-300 mb-4">
+                If you have questions or concerns about this privacy policy or how your data is handled, please contact us:
+            </p>
+            <p class="text-gray-300">
+                Email: <a href="mailto:contact@pvfreund.com" class="text-blue-400 hover:text-blue-300 transition">contact@pvfreund.com</a>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

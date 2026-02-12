@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Altimeter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-blue-400">Altimeter</div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-blue-400 transition">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-blue-400 transition">About</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-blue-400 transition">Contact</a>
+                    <a href="privacy.html" class="text-gray-300 hover:text-blue-400 transition">Privacy</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-blue-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="index.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">Home</a>
+                <a href="about.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">About</a>
+                <a href="contact.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">Contact</a>
+                <a href="privacy.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">Privacy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-6">About Altimeter</h1>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">What is Altimeter?</h2>
+            <p class="text-gray-300 mb-4">
+                Altimeter is a web-based application that provides real-time altitude, location, and device orientation data
+                using your device's built-in sensors and location services. Whether you're hiking, flying, or just curious
+                about your elevation, Altimeter gives you accurate readings right in your browser.
+            </p>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Features</h2>
+            <ul class="space-y-3 text-gray-300">
+                <li class="flex items-start">
+                    <svg class="w-6 h-6 text-blue-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span><strong>Real-time Altitude Tracking:</strong> Get your current elevation above sea level using GPS or Google's Elevation API</span>
+                </li>
+                <li class="flex items-start">
+                    <svg class="w-6 h-6 text-blue-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span><strong>Inclinometer:</strong> Measure device pitch (forward/backward tilt) and roll (left/right tilt) using the DeviceOrientation API</span>
+                </li>
+                <li class="flex items-start">
+                    <svg class="w-6 h-6 text-blue-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span><strong>Interactive Map:</strong> View your location on a map powered by Google Maps with real-time position updates</span>
+                </li>
+                <li class="flex items-start">
+                    <svg class="w-6 h-6 text-blue-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span><strong>Coordinate Display:</strong> See precise latitude and longitude coordinates with accuracy information</span>
+                </li>
+                <li class="flex items-start">
+                    <svg class="w-6 h-6 text-blue-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span><strong>Mobile-Optimized:</strong> Responsive design that works seamlessly on smartphones, tablets, and desktops</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">How It Works</h2>
+            <div class="text-gray-300 space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-300 mb-2">Altitude Detection</h3>
+                    <p>
+                        The app first attempts to get altitude data from your device's GPS sensor using the Geolocation API.
+                        However, many mobile devices don't have barometric sensors or don't provide altitude through GPS.
+                        When altitude data is unavailable, the app automatically falls back to Google's Elevation API,
+                        which uses your coordinates to determine elevation based on terrain data.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-300 mb-2">Device Orientation</h3>
+                    <p>
+                        The inclinometer uses your device's gyroscope and accelerometer through the DeviceOrientation API.
+                        This provides pitch (tilting forward/backward) and roll (tilting left/right) measurements in degrees.
+                        On iOS 13 and later, you'll need to grant permission to access motion sensors.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-300 mb-2">Location Services</h3>
+                    <p>
+                        High-accuracy GPS positioning is used to track your location. The app continuously updates your position
+                        and displays it on an interactive Google Map. Coordinate precision depends on your device's GPS capabilities
+                        and environmental factors like satellite visibility.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Accuracy Notes</h2>
+            <div class="text-gray-300 space-y-3">
+                <p>
+                    <strong>Altitude accuracy</strong> varies based on the data source. GPS altitude can have errors of 10-20 meters
+                    or more. Google's Elevation API typically provides better accuracy but depends on terrain data quality.
+                </p>
+                <p>
+                    <strong>Location accuracy</strong> depends on GPS signal strength, which can be affected by buildings, trees,
+                    weather, and other environmental factors. Indoor use may result in reduced accuracy.
+                </p>
+                <p>
+                    <strong>Orientation sensors</strong> are generally quite accurate but may need calibration. Different devices
+                    and browsers may report slightly different values.
+                </p>
+            </div>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-400">Technology</h2>
+            <p class="text-gray-300 mb-4">
+                Altimeter is built using modern web technologies:
+            </p>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                <li>HTML5 Geolocation API for GPS positioning</li>
+                <li>DeviceOrientation API for motion sensors</li>
+                <li>Google Maps JavaScript API for mapping</li>
+                <li>Google Elevation API for altitude fallback</li>
+                <li>Tailwind CSS for responsive styling</li>
+                <li>Pure JavaScript (no frameworks required)</li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

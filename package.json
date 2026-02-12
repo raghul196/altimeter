@@ -1,0 +1,20 @@
+{
+  "name": "altimeter",
+  "version": "1.0.0",
+  "description": "A real-time altitude tracking web application with inclinometer and location mapping features. Designed for mobile-first usage with GitHub Pages deployment support.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "http-server -S -C .certs/localhost.pem -K .certs/localhost-key.pem -p 8443 -a 0.0.0.0 -c-1",
+    "dev:local": "http-server -S -C .certs/localhost.pem -K .certs/localhost-key.pem -p 8443 -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}

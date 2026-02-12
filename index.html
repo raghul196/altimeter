@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altimeter - Real-time Altitude & Sensors</title>
+    <meta name="description" content="Real-time altitude tracking with inclinometer and location mapping using device sensors">
+    
+    <link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-blue-400">Altimeter</div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-blue-400 transition">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-blue-400 transition">About</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-blue-400 transition">Contact</a>
+                    <a href="privacy.html" class="text-gray-300 hover:text-blue-400 transition">Privacy</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-blue-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="index.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">Home</a>
+                <a href="about.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">About</a>
+                <a href="contact.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">Contact</a>
+                <a href="privacy.html" class="block py-2 text-gray-300 hover:text-blue-400 transition">Privacy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 pb-24 md:pb-8">
+        <!-- Permission Section -->
+        <div id="permission-section" class="text-center py-12">
+            <h1 class="text-4xl font-bold mb-4">Welcome to Altimeter</h1>
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+                Get real-time altitude, location coordinates, and device orientation data.
+                We need access to your device sensors and location to provide accurate readings.
+            </p>
+            <button id="start-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg transition shadow-lg">
+                Start Monitoring
+            </button>
+            <div id="permission-status" class="mt-4 text-sm text-gray-500"></div>
+        </div>
+
+        <!-- Data Section (Hidden Initially) -->
+        <div id="data-section" class="hidden">
+            <h1 class="text-3xl font-bold mb-6 text-center">Sensor Data</h1>
+
+            <!-- Data Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Altitude Card -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 text-blue-400">Altitude</h2>
+                    <div class="text-5xl font-bold mb-2" id="altitude-value">--</div>
+                    <div class="text-gray-400 text-sm" id="altitude-source">Waiting for data...</div>
+                    <div class="text-gray-500 text-xs mt-2" id="altitude-accuracy"></div>
+                </div>
+
+                <!-- Inclinometer Card -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 text-blue-400">Inclinometer</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="text-gray-400 text-sm">Pitch (Forward/Back)</div>
+                            <div class="text-3xl font-bold" id="pitch-value">--°</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Roll (Left/Right)</div>
+                            <div class="text-3xl font-bold" id="roll-value">--°</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coordinates Card -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 text-blue-400">Coordinates</h2>
+                    <div class="space-y-2">
+                        <div>
+                            <div class="text-gray-400 text-sm">Latitude</div>
+                            <div class="text-xl font-mono" id="latitude-value">--</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Longitude</div>
+                            <div class="text-xl font-mono" id="longitude-value">--</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Accuracy</div>
+                            <div class="text-xl" id="location-accuracy">--</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Card -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 text-blue-400">Location Map</h2>
+                    <div id="map" class="w-full h-64 rounded bg-gray-700"></div>
+                </div>
+            </div>
+
+            <!-- Error Display -->
+            <div id="error-display" class="hidden bg-red-900 border border-red-700 text-red-200 px-4 py-3 rounded mb-6">
+                <span id="error-message"></span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sticky Ad Footer -->
+    <footer id="ad-footer" class="bg-gray-800 border-t border-gray-700">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-center">
+            <div class="text-gray-500 text-sm">Advertisement Space</div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA63oPOnr6kCtiTUwnllBtz5j6IeCL_5U&callback=initMap" async defer></script>
+</body>
+</html>

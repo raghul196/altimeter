@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* Mobile-specific sticky ad footer */
+#ad-footer {
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    #ad-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+    }
+
+    /* Add padding to main content on mobile to prevent overlap with sticky footer */
+    main {
+        padding-bottom: 5rem; /* 80px to account for footer height */
+    }
+}
+
+/* Smooth transitions */
+* {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Map container styling */
+#map {
+    min-height: 256px;
+}
+
+/* Loading animation for data values */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Ensure proper spacing for mobile menu */
+#mobile-menu a {
+    border-bottom: 1px solid #374151;
+}
+
+#mobile-menu a:last-child {
+    border-bottom: none;
+}
+
+/* Better focus states for accessibility */
+button:focus,
+a:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Responsive font sizing */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
