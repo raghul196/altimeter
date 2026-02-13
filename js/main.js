@@ -35,15 +35,6 @@ async function startMonitoring() {
     try {
         statusElement.textContent = 'Requesting permissions...';
 
-        // Request device orientation permission (iOS 13+)
-        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-            statusElement.textContent = 'Requesting motion sensor permission...';
-            const permission = await DeviceOrientationEvent.requestPermission();
-
-            if (permission !== 'granted') {
-                throw new Error('Motion sensor permission denied');
-            }
-        }
 
         // Request geolocation permission and start watching
         if ('geolocation' in navigator) {
@@ -53,8 +44,6 @@ async function startMonitoring() {
             throw new Error('Geolocation is not supported by your browser');
         }
 
-        // Start listening to device orientation
-        startDeviceOrientation();
 
         // Hide permission section and show data section
         permissionSection.classList.add('hidden');
@@ -75,7 +64,14 @@ function startGeolocation() {
         maximumAge: 0
     };
 
-    watchId = navigator.geolocation.watchPosition(
+    // watchId = navigator.geolocation.watchPosition(
+    //     handlePositionSuccess,
+    //     handlePositionError,
+    //     options
+    // );
+
+    // navigator.geolocation.getCurrentPosition only fires once
+    navigator.geolocation.getCurrentPosition(
         handlePositionSuccess,
         handlePositionError,
         options
@@ -85,7 +81,6 @@ function startGeolocation() {
 // Handle successful position update
 function handlePositionSuccess(position) {
     const { latitude, longitude, altitude, accuracy, altitudeAccuracy } = position.coords;
-    console.log(altitude);
     // Update coordinates display
     document.getElementById('latitude-value').textContent = latitude.toFixed(6);
     document.getElementById('longitude-value').textContent = longitude.toFixed(6);
@@ -97,6 +92,7 @@ function handlePositionSuccess(position) {
     // Handle altitude
     if (altitude !== null && altitude !== undefined) {
         // GPS altitude available
+
         const altitudeMeters = altitude.toFixed(2);
         const altitudeFeet = Math.round(altitude * 3.28084);
         document.getElementById('altitude-value').textContent = `${altitudeMeters}m / ${altitudeFeet}ft`;
@@ -109,6 +105,7 @@ function handlePositionSuccess(position) {
         }
     } else {
         // Fallback to Google Elevation API
+
         document.getElementById('altitude-source').textContent = 'GPS altitude unavailable, fetching from Elevation API...';
         fetchElevation(latitude, longitude);
     }
@@ -142,23 +139,32 @@ function handlePositionError(error) {
 
 // Fetch elevation from Google Elevation API
 async function fetchElevation(latitude, longitude) {
-    try {
-        const url = `https://maps.googleapis.com/maps/api/elevation/json?locations=${latitude},${longitude}&key=${GOOGLE_API_KEY}`;
-        const response = await fetch(url);
-        const data = await response.json();
+    // Initialize the Google Elevation Service
+    const elevator = new google.maps.ElevationService();
 
-        if (data.status === 'OK' && data.results && data.results.length > 0) {
-            const elevation = data.results[0].elevation;
+    try {
+        // We wrap the callback-based Google API in a Promise to keep your async/await flow
+        const result = await new Promise((resolve, reject) => {
+            elevator.getElevationForLocations({
+                'locations': [{ lat: parseFloat(latitude), lng: parseFloat(longitude) }]
+            }, (results, status) => {
+                if (status === 'OK') {
+                    resolve(results[0]);
+                } else {
+                    reject(new Error('Elevation service failed: ' + status));
+                }
+            });
+        });
+
+        if (result) {
+            const elevation = result.elevation;
             const altitudeMeters = Math.round(elevation);
             const altitudeFeet = Math.round(elevation * 3.28084);
 
             document.getElementById('altitude-value').textContent = `${altitudeMeters}m / ${altitudeFeet}ft`;
             document.getElementById('altitude-source').textContent = 'Source: Google Elevation API';
             document.getElementById('altitude-accuracy').textContent = 'Based on terrain data';
-        } else {
-            document.getElementById('altitude-value').textContent = 'Unavailable';
-            document.getElementById('altitude-source').textContent = 'Elevation data unavailable';
-            document.getElementById('altitude-accuracy').textContent = '';
+            document.getElementById('altitude-updateTime').textContent = new Date().toLocaleTimeString();
         }
     } catch (error) {
         document.getElementById('altitude-value').textContent = 'Error';
@@ -168,35 +174,7 @@ async function fetchElevation(latitude, longitude) {
     }
 }
 
-// Start device orientation tracking
-function startDeviceOrientation() {
-    if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', handleOrientation);
-    } else {
-        document.getElementById('pitch-value').textContent = 'Not supported';
-        document.getElementById('roll-value').textContent = 'Not supported';
-    }
-}
 
-// Handle device orientation updates
-function handleOrientation(event) {
-    // Beta: pitch (front-to-back tilt) in degrees from -180 to 180
-    // Gamma: roll (left-to-right tilt) in degrees from -90 to 90
-    const pitch = event.beta;
-    const roll = event.gamma;
-
-    if (pitch !== null && pitch !== undefined) {
-        document.getElementById('pitch-value').textContent = `${pitch.toFixed(1)}°`;
-    } else {
-        document.getElementById('pitch-value').textContent = '--°';
-    }
-
-    if (roll !== null && roll !== undefined) {
-        document.getElementById('roll-value').textContent = `${roll.toFixed(1)}°`;
-    } else {
-        document.getElementById('roll-value').textContent = '--°';
-    }
-}
 
 // Initialize Google Map (callback function)
 function initMap() {

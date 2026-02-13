@@ -68,22 +68,9 @@
                     <div class="text-5xl font-bold mb-2" id="altitude-value">--</div>
                     <div class="text-gray-400 text-sm" id="altitude-source">Waiting for data...</div>
                     <div class="text-gray-500 text-xs mt-2" id="altitude-accuracy"></div>
+                    <div class="text-gray-500 text-xs mt-2" id = "altitude-updateTime"></div>
                 </div>
 
-                <!-- Inclinometer Card -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <h2 class="text-xl font-semibold mb-4 text-blue-400">Inclinometer</h2>
-                    <div class="space-y-3">
-                        <div>
-                            <div class="text-gray-400 text-sm">Pitch (Forward/Back)</div>
-                            <div class="text-3xl font-bold" id="pitch-value">--°</div>
-                        </div>
-                        <div>
-                            <div class="text-gray-400 text-sm">Roll (Left/Right)</div>
-                            <div class="text-3xl font-bold" id="roll-value">--°</div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Coordinates Card -->
                 <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
@@ -124,8 +111,8 @@
             <div class="text-gray-500 text-sm">Advertisement Space</div>
         </div>
     </footer>
-
-    <script src="js/main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA63oPOnr6kCtiTUwnllBtz5j6IeCL_5U&callback=initMap" async defer></script>
+    <script src="js/main.js"></script>
+
 </body>
 </html>
