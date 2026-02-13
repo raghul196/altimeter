@@ -1,5 +1,193 @@
 @import "tailwindcss";
 
+/* ============================================
+   LAYOUT COMPONENTS
+   ============================================ */
+
+body {
+    @apply bg-gray-900 text-gray-100 h-screen h-[100dvh];
+}
+
+.navbar {
+    @apply bg-gray-800 shadow-lg h-[10dvh];
+}
+
+.navbar-inner {
+    @apply container mx-auto px-4;
+}
+
+.navbar-content {
+    @apply flex justify-between items-center py-4;
+}
+
+.navbar-brand {
+    @apply text-2xl font-bold text-blue-400;
+}
+
+.nav-links {
+    @apply hidden md:flex space-x-6;
+}
+
+.nav-link {
+    @apply text-gray-300 hover:text-blue-400 transition;
+}
+
+.nav-mobile-button {
+    @apply md:hidden text-gray-300 hover:text-blue-400;
+}
+
+.nav-mobile-menu {
+    @apply pb-4 md:hidden;
+    /* Visibility controlled by JavaScript with hidden class */
+}
+
+.nav-mobile-link {
+    @apply block py-2 text-gray-300 hover:text-blue-400 transition;
+}
+
+/* Mobile menu dividers */
+.nav-mobile-menu a {
+    border-bottom: 1px solid #374151;
+}
+
+.nav-mobile-menu a:last-child {
+    border-bottom: none;
+}
+
+.main-container {
+    @apply container mx-auto h-[80dvh] w-full px-4  ;
+}
+/* ============================================
+    VIEWABLE CONTAINER
+   ============================================ */
+.viewable-container{
+    @apply h-[80dvh] w-full flex items-center justify-center
+}
+/* ============================================
+   PERMISSION & WELCOME SECTION
+   ============================================ */
+
+.permission-section {
+    @apply text-center py-12;
+}
+
+.welcome-title {
+    @apply text-4xl font-bold mb-4;
+}
+
+.welcome-description {
+    @apply text-gray-400 mb-8 max-w-2xl mx-auto;
+}
+
+.btn-primary {
+    @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg transition shadow-lg;
+}
+
+.permission-status {
+    @apply mt-4 text-sm text-gray-500;
+}
+
+/* ============================================
+   DATA SECTION
+   ============================================ */
+
+.data-section {
+    @apply w-full /* Visibility controlled by JavaScript with hidden class */
+}
+
+.section-title {
+    @apply text-3xl font-bold mb-6 text-center;
+}
+
+.data-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 mb-6;
+}
+
+.data-card {
+    @apply bg-gray-800 rounded-lg p-3 shadow-lg;
+}
+
+.card-title {
+    @apply text-xl font-semibold mb-4 text-blue-400;
+}
+
+/* ============================================
+   ALTITUDE CARD
+   ============================================ */
+
+.altitude-value {
+    @apply text-3xl font-bold mb-2;
+}
+
+.altitude-source {
+    @apply text-gray-400 text-sm;
+}
+
+.altitude-meta {
+    @apply text-gray-500 text-xs mt-2;
+}
+
+/* ============================================
+   COORDINATES CARD
+   ============================================ */
+
+.coordinates-space {
+    @apply space-y-2 flex flex-row;
+}
+
+.coordinate-group {
+    @apply space-y-1 w-1/2 ;
+}
+
+.coordinate-label {
+    @apply text-gray-400 text-sm;
+}
+
+.coordinate-value {
+    @apply text-xl font-mono;
+}
+
+/* ============================================
+   MAP CARD
+   ============================================ */
+
+.map-container {
+    @apply w-full h-64 rounded bg-gray-700;
+}
+
+#map {
+    min-height: 256px;
+}
+
+/* ============================================
+   ERROR DISPLAY
+   ============================================ */
+
+.error-display {
+    @apply bg-red-900 border border-red-700 text-red-200 px-4 py-3 rounded mb-6;
+    /* Visibility controlled by JavaScript with hidden class */
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    @apply bg-gray-800 border-t border-gray-700 h-[10dvh];
+}
+
+.footer-inner {
+    @apply container mx-auto px-4 h-16 flex items-center justify-center;
+}
+
+.footer-text {
+    @apply text-gray-500 text-sm;
+}
+
+/* ============================================
+   RESPONSIVE & MEDIA QUERIES
+   ============================================ */
+
 /* Mobile-specific sticky ad footer */
 #ad-footer {
     position: relative;
@@ -20,14 +208,24 @@
     }
 }
 
+/* Responsive font sizing */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
 /* Smooth transitions */
 * {
     transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Map container styling */
-#map {
-    min-height: 256px;
 }
 
 /* Loading animation for data values */
@@ -43,6 +241,10 @@
 .loading {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
 
 /* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {
@@ -62,29 +264,13 @@
     background: #6b7280;
 }
 
-/* Ensure proper spacing for mobile menu */
-#mobile-menu a {
-    border-bottom: 1px solid #374151;
-}
-
-#mobile-menu a:last-child {
-    border-bottom: none;
-}
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
 
 /* Better focus states for accessibility */
 button:focus,
 a:focus {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
-}
-
-/* Responsive font sizing */
-@media (max-width: 640px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
 }

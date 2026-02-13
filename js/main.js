@@ -80,11 +80,12 @@ function startGeolocation() {
 
 // Handle successful position update
 function handlePositionSuccess(position) {
+    console.log(position);
     const { latitude, longitude, altitude, accuracy, altitudeAccuracy } = position.coords;
     // Update coordinates display
     document.getElementById('latitude-value').textContent = latitude.toFixed(6);
     document.getElementById('longitude-value').textContent = longitude.toFixed(6);
-    document.getElementById('location-accuracy').textContent = `±${Math.round(accuracy)}m`;
+    
 
     // Update or initialize map
     updateMap(latitude, longitude);
