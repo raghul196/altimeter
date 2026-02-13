@@ -193,13 +193,8 @@ function updateMap(latitude, longitude) {
             center: position,
             zoom: 15,
             mapTypeId: 'terrain',
-            disableDefaultUI: false,
-            zoomControl: true,
-            mapTypeControl: true,
-            scaleControl: true,
-            streetViewControl: false,
-            rotateControl: false,
-            fullscreenControl: true
+            disableDefaultUI: true,
+            mapCameraControl:false,
         });
 
         // Create marker
