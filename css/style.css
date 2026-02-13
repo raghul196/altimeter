@@ -55,60 +55,48 @@ body {
 }
 
 .main-container {
-    @apply container mx-auto h-[80dvh] w-full px-4  ;
+    @apply  w-full h-[80dvh] overflow-y-auto overflow-hidden;
 }
 /* ============================================
     VIEWABLE CONTAINER
    ============================================ */
 .viewable-container{
-    @apply h-[80dvh] w-full flex items-center justify-center
-}
-/* ============================================
-   PERMISSION & WELCOME SECTION
-   ============================================ */
-
-.permission-section {
-    @apply text-center py-12;
-}
-
-.welcome-title {
-    @apply text-4xl font-bold mb-4;
-}
-
-.welcome-description {
-    @apply text-gray-400 mb-8 max-w-2xl mx-auto;
-}
-
-.btn-primary {
-    @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg transition shadow-lg;
-}
-
-.permission-status {
-    @apply mt-4 text-sm text-gray-500;
+    @apply flex-1 min-h-[80dvh] p-3 w-full sm:max-w-3xl mx-auto overflow-hidden 
+    flex flex-col overflow-y-auto justify-center space-y-4 border border-white
 }
 
 /* ============================================
    DATA SECTION
    ============================================ */
 
-.data-section {
-    @apply w-full /* Visibility controlled by JavaScript with hidden class */
-}
 
-.section-title {
-    @apply text-3xl font-bold mb-6 text-center;
-}
-
-.data-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-6 mb-6;
-}
 
 .data-card {
-    @apply bg-gray-800 rounded-lg p-3 shadow-lg;
+    @apply bg-gray-800  px-2 space-y-2 w-full flex flex-col 
+    border border-green-500;
 }
 
 .card-title {
     @apply text-xl font-semibold mb-4 text-blue-400;
+}
+
+.address-bar{
+    @apply
+        flex items-center border border-gray-300 rounded-lg 
+        overflow-hidden focus-within:ring-2 
+        focus-within:ring-blue-500 focus-within:border-transparent 
+        transition-all
+}
+
+.address-input {
+    @apply pl-10;
+}
+
+.find-btn {
+    @apply bg-gray-600 h-10 absolute right-0 hover:bg-gray-700 text-white font-bold rounded-lg transition shadow-lg whitespace-nowrap w-full;
+}
+.btn-secondary {
+    @apply bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition shadow-lg whitespace-nowrap w-full;
 }
 
 /* ============================================

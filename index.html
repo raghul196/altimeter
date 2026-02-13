@@ -43,59 +43,67 @@
 
     <!-- Main Content -->
     <main class="main-container">
-        <div class = "viewable-container">
-            <!-- Permission Section -->
-            <div id="permission-section" class="permission-section">
-                <h1 class="welcome-title">Welcome to Altimeter</h1>
-                <p class="welcome-description">
-                    Get real-time altitude, location coordinates data.
-                    We need access to your device sensors and location to provide accurate readings.
-                </p>
-                <button id="start-button" class="btn-primary">
-                    Start Monitoring
-                </button>
-                <div id="permission-status" class="permission-status"></div>
-            </div>
+        <div class="viewable-container">            
+            <h1 class="section-title hidden">Altimeter</h1>
 
-            <!-- Data Section (Hidden Initially) -->
-            <div id="data-section" class="data-section hidden">
-                <h1 class="section-title hidden">Sensor Data</h1>
+            <!-- Data Cards Grid -->
 
-                <!-- Data Cards Grid -->
-                <div class="data-grid">
 
-                    <!-- Map Card -->
-                    <div class="data-card">
-                        <h2 class="card-title">Location</h2>
-                        <div id="map" class="map-container"></div>
-                        <div class="coordinates-space">
-                            <div class="coordinate-group">
-                                <div class="coordinate-label">Latitude</div>
-                                <div class="coordinate-value" id="latitude-value">--</div>
-                            </div>
-                            <div class="coordinate-group">
-                                <div class="coordinate-label">Longitude</div>
-                                <div class="coordinate-value" id="longitude-value">--</div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Map Card -->
 
-                    <!-- Altitude Card -->
-                    <div class="data-card">
-                        <h2 class="card-title">Altitude</h2>
-                        <div class="altitude-value" id="altitude-value">--</div>
-                        <div class="altitude-source" id="altitude-source">Waiting for data...</div>
-                        <div class="altitude-meta" id="altitude-accuracy"></div>
-                        <div class="altitude-meta" id="altitude-updateTime">last updated : </div>
-                    </div>
-                    
+  
+            <div class="data-card">
+                <h2 class="card-title">Location</h2>
+                <div class="address-bar">
+                    <button id="gps-button" class="p-3 text-gray-500 hover:bg-gray-100 transition-colors" title="Use GPS">
+                    <svg class="w-6 h-6 fill-current" viewBox="-4 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M116,426 C114.343,426 113,424.657 113,423 C113,421.343 114.343,420 116,420 C117.657,420 119,421.343 119,423 C119,424.657 117.657,426 116,426 L116,426 Z M116,418 C113.239,418 111,420.238 111,423 C111,425.762 113.239,428 116,428 C118.761,428 121,425.762 121,423 C121,420.238 118.761,418 116,418 L116,418 Z M116,440 C114.337,440.009 106,427.181 106,423 C106,417.478 110.477,413 116,413 C121.523,413 126,417.478 126,423 C126,427.125 117.637,440.009 116,440 L116,440 Z M116,411 C109.373,411 104,416.373 104,423 C104,428.018 114.005,443.011 116,443 C117.964,443.011 128,427.95 128,423 C128,416.373 122.627,411 116,411 L116,411 Z" transform="translate(-104.000000, -411.000000)"></path>
+                    </svg>
+                    </button>
+
+                    <input 
+                    type="text" 
+                    id="address-input" 
+                    placeholder="Enable Gps or enter an address" 
+                    class="flex-1 py-3 px-2 outline-none text-gray-700 placeholder-gray-400"
+                    >
+
+                    <button id="address-submit-button" class="p-2 text-gray-300 hover:bg-gray-100 transition-colors">
+                    <svg class="w-8 h-8 fill-current" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.921,31.898c2.758,0,5.367-0.956,7.458-2.704l1.077,1.077l-0.358,0.358 c-0.188,0.188-0.293,0.442-0.293,0.707s0.105,0.52,0.293,0.707l8.257,8.256c0.195,0.195,0.451,0.293,0.707,0.293 s0.512-0.098,0.707-0.293l2.208-2.208c0.188-0.188,0.293-0.442,0.293-0.707s-0.105-0.52-0.293-0.707l-8.257-8.256 c-0.391-0.391-1.023-0.391-1.414,0l-0.436,0.436l-1.073-1.073c1.793-2.104,2.777-4.743,2.777-7.537c0-3.112-1.212-6.038-3.413-8.239 s-5.127-3.413-8.239-3.413s-6.038,1.212-8.238,3.413c-2.201,2.201-3.413,5.126-3.413,8.239c0,3.112,1.212,6.038,3.413,8.238 C14.883,30.687,17.809,31.898,20.921,31.898z M38.855,37.385l-0.794,0.793l-6.843-6.842l0.794-0.793L38.855,37.385z M14.097,13.423 c1.823-1.823,4.246-2.827,6.824-2.827s5.002,1.004,6.825,2.827c1.823,1.823,2.827,4.247,2.827,6.825 c0,2.578-1.004,5.001-2.827,6.824c-1.823,1.823-4.247,2.827-6.825,2.827s-5.001-1.004-6.824-2.827 c-1.823-1.823-2.827-4.247-2.827-6.824C11.27,17.669,12.273,15.246,14.097,13.423z"></path>
+                    </svg>
+                    </button>
                 </div>
 
-                <!-- Error Display -->
-                <div id="error-display" class="error-display hidden">
-                    <span id="error-message"></span>
+                <div id="map" class="map-container"></div>
+                <div class="coordinates-space">
+                    <div class="coordinate-group">
+                        <div class="coordinate-label">Latitude</div>
+                        <div class="coordinate-value" id="latitude-value">--</div>
+                    </div>
+                    <div class="coordinate-group">
+                        <div class="coordinate-label">Longitude</div>
+                        <div class="coordinate-value" id="longitude-value">--</div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Altitude Card -->
+             <div class="data-card">
+                <h2 class="card-title">Altitude</h2>
+                <div class="altitude-value" id="altitude-value">--</div>
+                <div class="altitude-source" id="altitude-source">Waiting for data...</div>
+                <div class="altitude-meta" id="altitude-accuracy"></div>
+                <div class="altitude-meta" id="altitude-updateTime">last updated : </div>
+            </div>
+                
+
+
+            <!-- Error Display -->
+            <div id="error-display" class="error-display hidden">
+                <span id="error-message"></span>
+            </div>
+            
         </div>
 
         <div>

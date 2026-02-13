@@ -11,12 +11,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Setup event listeners
 function setupEventListeners() {
-    const startButton = document.getElementById('start-button');
+    const addressSubmitButton = document.getElementById('address-submit-button');
+    const gpsButton = document.getElementById('gps-button');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    if (startButton) {
-        startButton.addEventListener('click', startMonitoring);
+    if (addressSubmitButton) {
+        addressSubmitButton.addEventListener('click', geocodeAddress);
+    }
+    if (gpsButton) {
+        gpsButton.addEventListener('click', startGeolocation);
     }
 
     if (mobileMenuButton && mobileMenu) {
@@ -26,35 +30,35 @@ function setupEventListeners() {
     }
 }
 
-// Start monitoring sensors and location
-async function startMonitoring() {
-    const permissionSection = document.getElementById('permission-section');
-    const dataSection = document.getElementById('data-section');
-    const statusElement = document.getElementById('permission-status');
-
-    try {
-        statusElement.textContent = 'Requesting permissions...';
-
-
-        // Request geolocation permission and start watching
-        if ('geolocation' in navigator) {
-            statusElement.textContent = 'Requesting location permission...';
-            startGeolocation();
-        } else {
-            throw new Error('Geolocation is not supported by your browser');
-        }
-
-
-        // Hide permission section and show data section
-        permissionSection.classList.add('hidden');
-        dataSection.classList.remove('hidden');
-
-    } catch (error) {
-        statusElement.textContent = `Error: ${error.message}`;
-        statusElement.classList.add('text-red-400');
-        console.error('Permission error:', error);
+// Geocode address and fetch elevation
+function geocodeAddress() {
+    const address = document.getElementById('address-input').value;
+    if (!address) {
+        showError("Please enter an address.");
+        return;
     }
+
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': address }, function(results, status) {
+        if (status === 'OK') {
+            const latitude = results[0].geometry.location.lat();
+            const longitude = results[0].geometry.location.lng();
+            
+            document.getElementById('latitude-value').textContent = latitude.toFixed(6);
+            document.getElementById('longitude-value').textContent = longitude.toFixed(6);
+
+            updateMap(latitude, longitude);
+
+            document.getElementById('altitude-source').textContent = 'Fetching from Elevation API...';
+            fetchElevation(latitude, longitude);
+            hideError();
+
+        } else {
+            showError('Geocode was not successful for the following reason: ' + status);
+        }
+    });
 }
+
 
 // Start geolocation tracking
 function startGeolocation() {
@@ -63,12 +67,6 @@ function startGeolocation() {
         timeout: 10000,
         maximumAge: 0
     };
-
-    // watchId = navigator.geolocation.watchPosition(
-    //     handlePositionSuccess,
-    //     handlePositionError,
-    //     options
-    // );
 
     // navigator.geolocation.getCurrentPosition only fires once
     navigator.geolocation.getCurrentPosition(
@@ -165,7 +163,7 @@ async function fetchElevation(latitude, longitude) {
             document.getElementById('altitude-value').textContent = `${altitudeMeters}m / ${altitudeFeet}ft`;
             document.getElementById('altitude-source').textContent = 'Source: Google Elevation API';
             document.getElementById('altitude-accuracy').textContent = 'Based on terrain data';
-            document.getElementById('altitude-updateTime').textContent = new Date().toLocaleTimeString();
+            document.getElementById('altitude-updateTime').textContent = "last updated : " + new Date().toLocaleString();
         }
     } catch (error) {
         document.getElementById('altitude-value').textContent = 'Error';
