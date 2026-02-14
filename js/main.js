@@ -21,8 +21,6 @@ function debounce(func, delay) {
 function setupEventListeners() {
     const addressSubmitButton = document.getElementById('address-submit-button');
     const gpsButton = document.getElementById('gps-button');
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
     const addressInput = document.getElementById('address-input');
     const suggestionsBox = document.getElementById('suggestions-box');
 
@@ -34,12 +32,6 @@ function setupEventListeners() {
     }
     if (addressInput) {
         addressInput.addEventListener('input', debounce(handleAddressInput, 300));
-    }
-
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
     }
 
     // Hide suggestions when clicking outside

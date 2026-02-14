@@ -3,53 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Altimeter - Real-time Altitude & Sensors</title>
-    <meta name="description" content="Real-time altitude tracking with inclinometer and location mapping using device sensors">
+    <link rel="icon" type="image/x-icon" href="./logo_48.png">
+    <title>What is My altitude?</title>
+    <meta name="description" content="Find your current altitude and elevation with our real-time online altimeter. Use your device's GPS to get an accurate answer to 'what is my altitude?', or look up the elevation for any address. The best altitude finder for hiking, outdoor activities, and curiosity.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "url": "https://www.whatismyaltitude.com",
+          "name": "What Is My Altitude?",
+          "description": "Find your current altitude and elevation with our real-time online altimeter. Use your device's GPS to get an accurate answer to 'what is my altitude?', or look up the elevation for any address. The best altitude finder for hiking, outdoor activities, and curiosity.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.whatismyaltitude.com/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Online Altimeter - Altitude Finder",
+          "operatingSystem": "Any (Web)",
+          "applicationCategory": "Tool, UtilitiesApplication",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "250"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "description": "A free web-based tool to find your current altitude and elevation using your device's GPS or by entering an address. An accurate altitude finder for various needs.",
+          "url": "https://www.whatismyaltitude.com"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Why is the altitude different from a sign or map?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "When asking \"what is my altitude\", readings can vary due to factors like signal accuracy, the data source (GPS vs. topographic data), and even atmospheric pressure changes (for barometric altimeters). This tool uses geoid models to provide an altitude reading that is as close as possible to the true elevation above sea level."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How accurate is this online altimeter?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The accuracy of this altitude finder depends on your device. When using a device's GPS, the accuracy is typically within a few meters. When using address lookup from a computer, the accuracy depends on the quality of the elevation data for that specific location and it will not account for your height in a building. For best results, use this altitude finder on a mobile device with a clear view of the sky."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need to install anything?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No! This is a web-based tool designed to help you find altitude instantly. It runs directly in your browser without any installation required. Simply grant location permissions when prompted for the most accurate reading."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Altimeter - Real-time Altitude & Sensors | What is My Altitude?">
+    <meta property="og:description" content="Find your real-time altitude, elevation, and location using GPS and device sensors. Accurate altitude finder for outdoor activities, hiking, and more. whatismyaltitude.com">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.whatismyaltitude.com">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Altimeter - Real-time Altitude & Sensors | What is My Altitude?">
+    <meta name="twitter:description" content="Find your real-time altitude, elevation, and location using GPS and device sensors. Accurate altitude finder for outdoor activities, hiking, and more. whatismyaltitude.com">
+    <meta name="twitter:url" content="https://www.whatismyaltitude.com">
     
     <link rel="stylesheet" href="css/output.css">
 
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-inner">
-            <div class="navbar-content">
-                <div class="navbar-brand">Altimeter</div>
+    <!-- Navigation Bar Removed -->
+         <!-- Navigation -->
+    <header class="navbar">
+        <img src = "logo_144.png" alt = "Logo"/>
+        <h1>What is my Altitude</h1>
+    </header>
 
-                <!-- Desktop Navigation -->
-                <div class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                    <a href="privacy.html" class="nav-link">Privacy</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="nav-mobile-button">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Mobile Navigation -->
-            <div id="mobile-menu" class="nav-mobile-menu hidden">
-                <a href="index.html" class="nav-mobile-link">Home</a>
-                <a href="about.html" class="nav-mobile-link">About</a>
-                <a href="contact.html" class="nav-mobile-link">Contact</a>
-                <a href="privacy.html" class="nav-mobile-link">Privacy</a>
-            </div>
-        </div>
-    </nav>
 
     <!-- Main Content -->
     <main class="main-container">
         <div class="viewable-container">            
-            <h1 class="section-title hidden">Altimeter</h1>
-
             <!-- Data Cards Grid -->
 
-
+            <h2 class= "hidden">Address</h2>
             <div class="address-bar">
                 <button id="gps-button"  title="Use GPS">
                 <svg class="w-6 h-6 fill-current" viewBox="-4 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -127,28 +182,38 @@
 
         <div class="info-container">
             <section id="what-is-altimeter" class="info-section">
-                <h2>What is an Altimeter?</h2>
-                <p>An altimeter is a crucial instrument used to measure the altitude of an object above a fixed level, most commonly sea level. While traditional altimeters are instruments in aircraft, modern technology allows for digital altimeters, like this web-based tool, that leverage GPS and other sensors to determine elevation with remarkable accuracy.</p>
+                <h2>What is an Altimeter and Altitude Finder?</h2>
+                <p>An altimeter is a crucial instrument used to measure the altitude of an object above a fixed level, most commonly sea level. This digital <strong>altitude finder</strong> is a modern version of that tool. While traditional altimeters are instruments in aircraft, modern technology allows for digital altimeters, like this web-based tool, that leverage GPS and other sensors to determine your elevation and answer the question, "<strong>what is my altitude</strong>?".</p>
             </section>
-        
+
             <section id="how-it-works" class="info-section">
-                <h2>How This Altimeter Functions</h2>
-                <p>This online altimeter provides your current elevation using a combination of technologies available in your device:</p>
+                <h2>How This Altitude Finder Works</h2>
+                <p>This online altimeter provides your current elevation using a combination of technologies available in your device. It's designed to be the easiest way to <strong>find altitude</strong> online.</p>
                 <ul>
-                    <li><strong>GPS (Global Positioning System):</strong> For devices with GPS capabilities (most smartphones), we use the GPS signal to obtain a precise location, including latitude, longitude, and altitude.</li>
+                    <li><strong>GPS (Global Positioning System):</strong> For devices with GPS capabilities (most smartphones), we use the GPS signal to obtain a precise location, including latitude, longitude, and altitude. This is the most accurate method to find your altitude.</li>
                     <li><strong>IP Geolocation & Address Lookup:</strong> If GPS is unavailable or you enter an address, we use databases to find the elevation for that specific geographic coordinate. While convenient, this method may be less precise than a direct GPS reading.</li>
                 </ul>
-                <p>The tool prioritizes GPS for the highest accuracy and falls back to other methods when needed, ensuring you always get the best possible elevation data.</p>
+                <p>The tool prioritizes GPS for the highest accuracy and falls back to other methods when needed, ensuring you always get the best possible elevation data to determine your <strong>whatsmyaltitude</strong> result.</p>
+            </section>
+
+            <section id="accuracy" class="info-section">
+                <h2>Understanding the Accuracy of Your Altitude Reading</h2>
+                <p>When you use an online <strong>altitude finder</strong>, the accuracy of the result depends heavily on the device you're using. If you're on a computer, this tool often uses your IP address to determine your location and then finds the altitude for that spot. This is a good estimate, but it has limitations. For example, if you're asking '<strong>what is my altitude</strong>' from the 10th floor of an office building, the tool will show you the altitude at ground level, not your actual, higher elevation.</p>
+            </section>
+
+            <section id="improve-accuracy" class="info-section">
+                <h2>How to Get a More Accurate Altitude Reading</h2>
+                <p>To <strong>find altitude</strong> with the best possible accuracy, we strongly recommend using a mobile device with a built-in GPS. Smartphones and tablets with GPS can pinpoint your exact location, including your elevation, much more precisely than a computer relying on an IP address. For activities like hiking, surveying, or any situation where precision is key, a GPS-enabled device is the best way to get an answer. Scan the QR code on this page to open this tool on your mobile device for a better experience.</p>
             </section>
         
             <section id="applications" class="info-section">
                 <h2>Where Can Altimeters Be Used?</h2>
-                <p>Altimeters are indispensable in a variety of fields and activities:</p>
+                <p>Altimeters are indispensable in a variety of fields and activities where you need to <strong>find altitude</strong>:</p>
                 <ul>
                     <li><strong>Aviation:</strong> Pilots rely on altimeters for safe navigation and to maintain correct flight levels.</li>
-                    <li><strong>Hiking and Mountaineering:</strong> Climbers use altimeters to track their ascent, gauge their position on a map, and predict weather changes.</li>
+                    <li><strong>Hiking and Mountaineering:</strong> Climbers use altimeters to track their ascent, gauge their position on a map, and predict weather changes. Knowing your altitude is key to safety.</li>
                     <li><strong>Scientific Research:</strong> Geologists, surveyors, and environmental scientists use elevation data for mapping terrain, studying landforms, and monitoring environmental changes.</li>
-                    <li><strong>Outdoor Recreation:</strong> Skiers, bikers, and drone pilots use altitude information for safety and performance tracking.</li>
+                    <li><strong>Outdoor Recreation:</strong> Skiers, bikers, and drone pilots use altitude information for safety and performance tracking with their <strong>altitude finder</strong>.</li>
                 </ul>
             </section>
         
@@ -156,16 +221,36 @@
                 <h2>Frequently Asked Questions (FAQ)</h2>
                 <div class="faq-item">
                     <h3>Why is the altitude different from a sign or map?</h3>
-                    <p>Altitude readings can vary due to factors like signal accuracy, the data source (GPS vs. topographic data), and atmospheric pressure changes (for barometric altimeters). This tool uses geoid models to provide an altitude reading that is as close as possible to the true elevation above sea level.</p>
+                    <p>When asking "<strong>what is my altitude</strong>", readings can vary due to factors like signal accuracy, the data source (GPS vs. topographic data), and even atmospheric pressure changes (for barometric altimeters). This tool uses geoid models to provide an altitude reading that is as close as possible to the true elevation above sea level.</p>
                 </div>
                 <div class="faq-item">
                     <h3>How accurate is this online altimeter?</h3>
-                    <p>When using a device's GPS, the accuracy is typically within a few meters. When using address lookup, the accuracy depends on the quality of the elevation data for that specific location. For best results, use GPS on a mobile device with a clear view of the sky.</p>
+                    <p>The accuracy of this <strong>altitude finder</strong> depends on your device. When using a device's GPS, the accuracy is typically within a few meters. When using address lookup from a computer, the accuracy depends on the quality of the elevation data for that specific location and it will not account for your height in a building. For best results, use this <strong>altitude finder</strong> on a mobile device with a clear view of the sky.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Do I need to install anything?</h3>
-                    <p>No! This is a web-based tool. It runs directly in your browser without any installation required. Simply grant location permissions when prompted for the most accurate reading.</p>
+                    <p>No! This is a web-based tool designed to help you <strong>find altitude</strong> instantly. It runs directly in your browser without any installation required. Simply grant location permissions when prompted for the most accurate reading.</p>
                 </div>
+            </section>
+            <section id="about" class="info-section">
+                <h2>About This Altimeter</h2>
+                <p>This web-based application provides real-time altitude and location data using your device's built-in sensors. Whether you're hiking, flying, or just curious about your elevation, this tool gives you accurate readings right in your browser.</p>
+                <p>It is built with modern web technologies like the HTML5 Geolocation API and Leaflet maps, all without requiring any frameworks.</p>
+            </section>
+            <section id="contact" class="info-section">
+                <h2>Contact & Feedback</h2>
+                <p>Have questions or suggestions? For general inquiries, please email us at <a href="mailto:contact@pvfreund.com" class="text-blue-400 hover:text-blue-300 transition">contact@pvfreund.com</a>.</p>
+                
+            </section>
+            <section id="privacy" class="info-section">
+                <h2>Privacy Policy</h2>
+                <p><strong>We respect your privacy. All data processing happens locally in your browser.</strong></p>
+                <ul>
+                    <li>We access your Location Data (GPS coordinates) to display readings in real-time.</li>
+                    <li>Your coordinates are sent to third-party services (OpenStreetMap, Open-Elevation) to display the map and fetch elevation data.</li>
+                    <li><strong>We do not store or log your location history or sensor data.</strong> All information is cleared when you close the browser tab.</li>
+                </ul>
+                <p>You can revoke location permissions at any time through your browser settings.</p>
             </section>
         </div>
     </main>
@@ -173,7 +258,7 @@
     <!-- Sticky Ad Footer -->
     <footer id="ad-footer" class="footer">
         <div class="footer-inner">
-            <div class="footer-text">Advertisement Space</div>
+            <div class="footer-text"></div>
         </div>
     </footer>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"

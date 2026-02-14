@@ -9,51 +9,16 @@ body {
 }
 
 .navbar {
-    @apply bg-gray-800 shadow-lg h-[10dvh];
+    @apply bg-gray-800 h-[10dvh] 
+    p-3 px-6 flex flex-row items-center;
 }
 
-.navbar-inner {
-    @apply container mx-auto px-4;
-}
-
-.navbar-content {
-    @apply flex justify-between items-center py-4;
-}
-
-.navbar-brand {
+.navbar h1 {
     @apply text-2xl font-bold text-blue-400;
 }
-
-.nav-links {
-    @apply hidden md:flex space-x-6;
+.navbar img{
+    @apply h-12 w-12 ;
 }
-
-.nav-link {
-    @apply text-gray-300 hover:text-blue-400 transition;
-}
-
-.nav-mobile-button {
-    @apply md:hidden text-gray-300 hover:text-blue-400;
-}
-
-.nav-mobile-menu {
-    @apply pb-4 md:hidden;
-    /* Visibility controlled by JavaScript with hidden class */
-}
-
-.nav-mobile-link {
-    @apply block py-2 text-gray-300 hover:text-blue-400 transition;
-}
-
-/* Mobile menu dividers */
-.nav-mobile-menu a {
-    border-bottom: 1px solid #374151;
-}
-
-.nav-mobile-menu a:last-child {
-    border-bottom: none;
-}
-
 .main-container {
     @apply  w-full h-[80dvh] overflow-y-auto overflow-hidden;
 }
@@ -131,11 +96,11 @@ body {
 .altitude-space {
     @apply
         w-full  border border-gray-600
-    bg-gray-700 text-center rounded-lg
-    flex flex-col  ; 
+      bg-blue-800  text-center rounded-full
+    flex flex-col p-2 ; 
 }
 .altitude-value {
-    @apply text-3xl text-center text-blue-400  mb-2;
+    @apply text-4xl text-center text-lime-400  mb-2;
 }
 
 .altitude-details {
