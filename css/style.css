@@ -63,7 +63,7 @@ body {
 .viewable-container{
     @apply flex-1 min-h-[80dvh] p-4 w-full sm:max-w-3xl 
     mx-auto overflow-hidden flex flex-col 
-    overflow-y-auto justify-center space-y-4 border
+    overflow-y-auto justify-center space-y-4 
      border-white relative; /* Added relative positioning */
 }
 
@@ -190,6 +190,18 @@ body {
     /* Visibility controlled by JavaScript with hidden class */
 }
 
+.qr-container{
+    @apply hidden border border-gray-500 
+    sm:flex flex-row p-2 rounded-lg mx-auto max-w-xl
+
+}
+.qr-container img{
+    @apply  h-30 w-30 p-2
+}
+
+.qr-container div{
+    @apply flex flex-col justify-center space-y-2
+}
 /* ============================================
    FOOTER
    ============================================ */

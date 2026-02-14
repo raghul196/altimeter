@@ -98,6 +98,7 @@ function displaySuggestions(suggestions) {
 
 // Geocode address and fetch elevation
 async function geocodeAddress() {
+    stopGeolocation(); // Stoping gps watch
     const address = document.getElementById('address-input').value;
     const suggestionsBox = document.getElementById('suggestions-box');
     suggestionsBox.classList.add('hidden');
@@ -142,20 +143,41 @@ function startGeolocation() {
     };
 
     // navigator.geolocation.getCurrentPosition only fires once
-    navigator.geolocation.getCurrentPosition(
+
+    // navigator.geolocation.getCurrentPosition(
+    //     handlePositionSuccess,
+    //     handlePositionError,
+    //     options
+    // );
+    watchId = navigator.geolocation.watchPosition(
         handlePositionSuccess,
         handlePositionError,
         options
     );
 }
+function stopGeolocation() {
+    if (watchId !== null) {
+        console.log('clearing watch')
+        // 3. Use clearWatch to stop tracking
+        navigator.geolocation.clearWatch(watchId);
+        
+        // 4. Reset the ID to null so we know it's stopped
+        geolocationWatchId = null;
+
+    } 
+}
 
 // Reverse geocode coordinates to get an address
 async function reverseGeocode(latitude, longitude) {
     try {
+        const addressInput = document.getElementById('address-input');
         const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
         const data = await response.json();
-        if (data && data.display_name) {
-            document.getElementById('address-input').value = data.display_name;
+        if (data && data.display_name ) {
+            if (document.activeElement !== addressInput) {
+                document.getElementById('address-input').value = data.display_name;
+            }
+            
         }
     } catch (error) {
         console.error('Reverse geocoding error:', error);
@@ -164,7 +186,7 @@ async function reverseGeocode(latitude, longitude) {
 
 // Handle successful position update
 function handlePositionSuccess(position) {
-    console.log(position);
+
     const { latitude, longitude, altitude, accuracy, altitudeAccuracy } = position.coords;
     // Update coordinates display
     document.getElementById('latitude-value').textContent = latitude.toFixed(6);
@@ -259,7 +281,12 @@ function updateMap(latitude, longitude) {
             .openPopup();
     } else {
         // Update existing map and marker
-        map.setView(position, 15);
+        map.setView(position, map.getZoom(), {
+            animate: true,
+            pan: {
+                duration: 1
+            }
+        });
         marker.setLatLng(position);
     }
 }
