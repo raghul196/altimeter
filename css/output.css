@@ -24,6 +24,7 @@
     --color-gray-900: oklch(21% 0.034 264.665);
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-lg: 32rem;
     --container-3xl: 48rem;
     --container-4xl: 56rem;
     --text-sm: 0.875rem;
@@ -600,6 +601,7 @@ body {
   overflow-y: auto;
 }
 .viewable-container {
+  position: relative;
   margin-inline: auto;
   display: flex;
   min-height: 80dvh;
@@ -648,7 +650,7 @@ body {
   flex: 1;
   padding-inline: calc(var(--spacing) * 2);
   padding-block: calc(var(--spacing) * 3);
-  color: var(--color-gray-700);
+  color: var(--color-gray-300);
   &::placeholder {
     color: var(--color-gray-400);
   }
@@ -678,6 +680,36 @@ body {
       background-color: var(--color-gray-100);
     }
   }
+}
+#suggestions-box {
+  margin-inline: calc(var(--spacing) * 10);
+  max-height: calc(var(--spacing) * 36);
+  max-width: calc(var(--spacing) * 64);
+  @media (width >= 40rem) {
+    max-width: var(--container-lg);
+  }
+  position: absolute;
+  top: calc(22% + 0.5rem);
+  left: 1rem;
+  width: calc(100% - 2rem);
+  background-color: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 0.5rem;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  color: #f3f4f6;
+}
+.suggestion-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #374151;
+}
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+.suggestion-item:hover {
+  background-color: #374151;
 }
 .altitude-space {
   display: flex;

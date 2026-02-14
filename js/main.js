@@ -2,12 +2,20 @@
 let map;
 let marker;
 let watchId;
-const GOOGLE_API_KEY = 'AIzaSyBA63oPOnr6kCtiTUwnllBtz5j6IeCL_5U'; // Replace with actual API key
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
 });
+
+// Debounce function to limit API calls
+function debounce(func, delay) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+}
 
 // Setup event listeners
 function setupEventListeners() {
@@ -15,6 +23,8 @@ function setupEventListeners() {
     const gpsButton = document.getElementById('gps-button');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    const addressInput = document.getElementById('address-input');
+    const suggestionsBox = document.getElementById('suggestions-box');
 
     if (addressSubmitButton) {
         addressSubmitButton.addEventListener('click', geocodeAddress);
@@ -22,27 +32,88 @@ function setupEventListeners() {
     if (gpsButton) {
         gpsButton.addEventListener('click', startGeolocation);
     }
+    if (addressInput) {
+        addressInput.addEventListener('input', debounce(handleAddressInput, 300));
+    }
 
     if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', function() {
             mobileMenu.classList.toggle('hidden');
         });
     }
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.address-bar')) {
+            suggestionsBox.classList.add('hidden');
+        }
+    });
 }
 
-// Geocode address and fetch elevation
-function geocodeAddress() {
+// Handle address input for suggestions
+async function handleAddressInput() {
     const address = document.getElementById('address-input').value;
+    const suggestionsBox = document.getElementById('suggestions-box');
+
+    if (address.length < 3) {
+        suggestionsBox.classList.add('hidden');
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=5`);
+        const data = await response.json();
+        displaySuggestions(data);
+    } catch (error) {
+        console.error('Suggestion fetch error:', error);
+        suggestionsBox.classList.add('hidden');
+    }
+}
+
+// Display address suggestions
+function displaySuggestions(suggestions) {
+    const suggestionsBox = document.getElementById('suggestions-box');
+    suggestionsBox.innerHTML = '';
+
+    if (suggestions.length === 0) {
+        suggestionsBox.classList.add('hidden');
+        return;
+    }
+
+    suggestions.forEach(suggestion => {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.classList.add('suggestion-item');
+        suggestionItem.textContent = suggestion.display_name;
+        suggestionItem.addEventListener('click', () => {
+            document.getElementById('address-input').value = suggestion.display_name;
+            suggestionsBox.classList.add('hidden');
+            geocodeAddress();
+        });
+        suggestionsBox.appendChild(suggestionItem);
+    });
+
+    suggestionsBox.classList.remove('hidden');
+}
+
+
+// Geocode address and fetch elevation
+async function geocodeAddress() {
+    const address = document.getElementById('address-input').value;
+    const suggestionsBox = document.getElementById('suggestions-box');
+    suggestionsBox.classList.add('hidden');
+    
     if (!address) {
         showError("Please enter an address.");
         return;
     }
 
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': address }, function(results, status) {
-        if (status === 'OK') {
-            const latitude = results[0].geometry.location.lat();
-            const longitude = results[0].geometry.location.lng();
+    try {
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+        const data = await response.json();
+
+        if (data && data.length > 0) {
+            const latitude = parseFloat(data[0].lat);
+            const longitude = parseFloat(data[0].lon);
             
             document.getElementById('latitude-value').textContent = latitude.toFixed(6);
             document.getElementById('longitude-value').textContent = longitude.toFixed(6);
@@ -53,9 +124,12 @@ function geocodeAddress() {
             hideError();
 
         } else {
-            showError('Geocode was not successful for the following reason: ' + status);
+            showError('Address not found.');
         }
-    });
+    } catch (error) {
+        showError('Error during geocoding.');
+        console.error('Geocoding error:', error);
+    }
 }
 
 
@@ -75,6 +149,19 @@ function startGeolocation() {
     );
 }
 
+// Reverse geocode coordinates to get an address
+async function reverseGeocode(latitude, longitude) {
+    try {
+        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+        const data = await response.json();
+        if (data && data.display_name) {
+            document.getElementById('address-input').value = data.display_name;
+        }
+    } catch (error) {
+        console.error('Reverse geocoding error:', error);
+    }
+}
+
 // Handle successful position update
 function handlePositionSuccess(position) {
     console.log(position);
@@ -83,6 +170,8 @@ function handlePositionSuccess(position) {
     document.getElementById('latitude-value').textContent = latitude.toFixed(6);
     document.getElementById('longitude-value').textContent = longitude.toFixed(6);
     
+    // Reverse geocode to fill address bar
+    reverseGeocode(latitude, longitude);
 
     // Update or initialize map
     updateMap(latitude, longitude);
@@ -97,7 +186,7 @@ function handlePositionSuccess(position) {
         document.getElementById('altitude-source').textContent = 'GPS';
 
     } else {
-        // Fallback to Google Elevation API
+        // Fallback to API
         fetchElevation(latitude, longitude);
     }
 
@@ -128,33 +217,22 @@ function handlePositionError(error) {
     console.error('Geolocation error:', error);
 }
 
-// Fetch elevation from Google Elevation API
+// Fetch elevation from Open Elevation API
 async function fetchElevation(latitude, longitude) {
-    // Initialize the Google Elevation Service
-    const elevator = new google.maps.ElevationService();
-
     try {
-        // We wrap the callback-based Google API in a Promise to keep your async/await flow
-        const result = await new Promise((resolve, reject) => {
-            elevator.getElevationForLocations({
-                'locations': [{ lat: parseFloat(latitude), lng: parseFloat(longitude) }]
-            }, (results, status) => {
-                if (status === 'OK') {
-                    resolve(results[0]);
-                } else {
-                    reject(new Error('Elevation service failed: ' + status));
-                }
-            });
-        });
-
-        if (result) {
-            const elevation = result.elevation;
+        const response = await fetch(`https://api.open-elevation.com/api/v1/lookup?locations=${latitude},${longitude}`);
+        const data = await response.json();
+        
+        if (data.results && data.results.length > 0) {
+            const elevation = data.results[0].elevation;
             const altitudeMeters = Math.round(elevation);
             const altitudeFeet = Math.round(elevation * 3.28084);
 
             document.getElementById('altitude-value').textContent = `${altitudeMeters}m / ${altitudeFeet}ft`;
-            document.getElementById('altitude-source').textContent = 'Google';
+            document.getElementById('altitude-source').textContent = 'Open-Elevation';
             document.getElementById('altitude-updateTime').textContent = new Date().toLocaleTimeString();
+        } else {
+            throw new Error("No elevation data returned");
         }
     } catch (error) {
         document.getElementById('altitude-value').textContent = 'Error';
@@ -163,39 +241,26 @@ async function fetchElevation(latitude, longitude) {
     }
 }
 
-
-
-// Initialize Google Map (callback function)
-function initMap() {
-    // Map will be initialized when position is first received
-    console.log('Google Maps API loaded');
-}
-
-// Update or create map
+// Update or create map using Leaflet
 function updateMap(latitude, longitude) {
-    const position = { lat: latitude, lng: longitude };
+    const position = [latitude, longitude];
 
     if (!map) {
         // Initialize map
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: position,
-            zoom: 15,
-            mapTypeId: 'terrain',
-            disableDefaultUI: true,
-            mapCameraControl:false,
-        });
+        map = L.map('map').setView(position, 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
         // Create marker
-        marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: 'Your Location',
-            animation: google.maps.Animation.DROP
-        });
+        marker = L.marker(position).addTo(map)
+            .bindPopup('Your Location')
+            .openPopup();
     } else {
         // Update existing map and marker
-        map.setCenter(position);
-        marker.setPosition(position);
+        map.setView(position, 15);
+        marker.setLatLng(position);
     }
 }
 
@@ -224,6 +289,3 @@ window.addEventListener('beforeunload', function() {
         navigator.geolocation.clearWatch(watchId);
     }
 });
-
-// Make initMap available globally for Google Maps callback
-window.initMap = initMap;

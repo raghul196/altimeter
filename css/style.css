@@ -64,7 +64,7 @@ body {
     @apply flex-1 min-h-[80dvh] p-4 w-full sm:max-w-3xl 
     mx-auto overflow-hidden flex flex-col 
     overflow-y-auto justify-center space-y-4 border
-     border-white
+     border-white relative; /* Added relative positioning */
 }
 
 /* ============================================
@@ -85,7 +85,7 @@ body {
 
 .address-input {
     @apply flex-1 py-3 px-2 outline-none 
-    text-gray-700 placeholder-gray-400;
+    text-gray-300 placeholder-gray-400;
 }
 
 #address-submit-button{
@@ -98,6 +98,32 @@ body {
         p-3 text-gray-500 hover:bg-gray-100 transition-colors
 }
 
+#suggestions-box {
+    @apply absolute mx-10 max-h-36 max-w-64 sm:max-w-lg ;
+    position: absolute;
+    top: calc(22% + 0.5rem); /* Position below address bar with some margin */
+    left: 1rem; /* Align with left padding of viewable-container */
+    width: calc(100% - 2rem); /* Full width within viewable-container padding */
+
+    background-color: #1f2937; /* Dark background to match theme */
+    border: 1px solid #4b5563; /* Subtle border */
+    border-radius: 0.5rem; /* Rounded corners */
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    color: #f3f4f6; /* Light text color */
+}
+.suggestion-item {
+    padding: 0.75rem 1rem; /* Padding for readability */
+    cursor: pointer;
+    border-bottom: 1px solid #374151; /* Separator between items */
+}
+.suggestion-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+.suggestion-item:hover {
+    background-color: #374151; /* Slightly lighter background on hover */
+}
 
 /* ============================================
    ALTITUDE CARD
