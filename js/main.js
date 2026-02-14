@@ -49,7 +49,6 @@ function geocodeAddress() {
 
             updateMap(latitude, longitude);
 
-            document.getElementById('altitude-source').textContent = 'Fetching from Elevation API...';
             fetchElevation(latitude, longitude);
             hideError();
 
@@ -95,17 +94,10 @@ function handlePositionSuccess(position) {
         const altitudeMeters = altitude.toFixed(2);
         const altitudeFeet = Math.round(altitude * 3.28084);
         document.getElementById('altitude-value').textContent = `${altitudeMeters}m / ${altitudeFeet}ft`;
-        document.getElementById('altitude-source').textContent = 'Source: GPS';
+        document.getElementById('altitude-source').textContent = 'GPS';
 
-        if (altitudeAccuracy) {
-            document.getElementById('altitude-accuracy').textContent = `Accuracy: ±${Math.round(altitudeAccuracy)}m`;
-        } else {
-            document.getElementById('altitude-accuracy').textContent = '';
-        }
     } else {
         // Fallback to Google Elevation API
-
-        document.getElementById('altitude-source').textContent = 'GPS altitude unavailable, fetching from Elevation API...';
         fetchElevation(latitude, longitude);
     }
 
@@ -161,14 +153,12 @@ async function fetchElevation(latitude, longitude) {
             const altitudeFeet = Math.round(elevation * 3.28084);
 
             document.getElementById('altitude-value').textContent = `${altitudeMeters}m / ${altitudeFeet}ft`;
-            document.getElementById('altitude-source').textContent = 'Source: Google Elevation API';
-            document.getElementById('altitude-accuracy').textContent = 'Based on terrain data';
-            document.getElementById('altitude-updateTime').textContent = "last updated : " + new Date().toLocaleString();
+            document.getElementById('altitude-source').textContent = 'Google';
+            document.getElementById('altitude-updateTime').textContent = new Date().toLocaleTimeString();
         }
     } catch (error) {
         document.getElementById('altitude-value').textContent = 'Error';
         document.getElementById('altitude-source').textContent = 'Failed to fetch elevation data';
-        document.getElementById('altitude-accuracy').textContent = '';
         console.error('Elevation API error:', error);
     }
 }

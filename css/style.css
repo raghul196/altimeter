@@ -61,8 +61,10 @@ body {
     VIEWABLE CONTAINER
    ============================================ */
 .viewable-container{
-    @apply flex-1 min-h-[80dvh] p-3 w-full sm:max-w-3xl mx-auto overflow-hidden 
-    flex flex-col overflow-y-auto justify-center space-y-4 border border-white
+    @apply flex-1 min-h-[80dvh] p-4 w-full sm:max-w-3xl 
+    mx-auto overflow-hidden flex flex-col 
+    overflow-y-auto justify-center space-y-4 border
+     border-white
 }
 
 /* ============================================
@@ -71,14 +73,7 @@ body {
 
 
 
-.data-card {
-    @apply bg-gray-800  px-2 space-y-2 w-full flex flex-col 
-    border border-green-500;
-}
 
-.card-title {
-    @apply text-xl font-semibold mb-4 text-blue-400;
-}
 
 .address-bar{
     @apply
@@ -89,42 +84,55 @@ body {
 }
 
 .address-input {
-    @apply pl-10;
+    @apply flex-1 py-3 px-2 outline-none 
+    text-gray-700 placeholder-gray-400;
 }
 
-.find-btn {
-    @apply bg-gray-600 h-10 absolute right-0 hover:bg-gray-700 text-white font-bold rounded-lg transition shadow-lg whitespace-nowrap w-full;
+#address-submit-button{
+    @apply 
+        p-2 text-gray-300 hover:bg-gray-100 transition-colors
 }
-.btn-secondary {
-    @apply bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition shadow-lg whitespace-nowrap w-full;
+
+#gps-button{
+    @apply 
+        p-3 text-gray-500 hover:bg-gray-100 transition-colors
 }
+
 
 /* ============================================
    ALTITUDE CARD
    ============================================ */
-
+.altitude-space {
+    @apply
+        w-full  border border-gray-600
+    bg-gray-700 text-center rounded-lg
+    flex flex-col  ; 
+}
 .altitude-value {
-    @apply text-3xl font-bold mb-2;
+    @apply text-3xl text-center text-blue-400  mb-2;
 }
 
-.altitude-source {
-    @apply text-gray-400 text-sm;
+.altitude-details {
+    @apply text-gray-500 text-sm w-full flex    
+    flex-row;
+}
+.altitude-details div {
+    @apply w-1/2 px-2
 }
 
-.altitude-meta {
-    @apply text-gray-500 text-xs mt-2;
-}
 
 /* ============================================
    COORDINATES CARD
    ============================================ */
 
 .coordinates-space {
-    @apply space-y-2 flex flex-row;
+    @apply space-x-2 flex flex-row w-full;
 }
 
 .coordinate-group {
-    @apply space-y-1 w-1/2 ;
+    @apply space-y-1  w-1/2 border border-gray-600
+  bg-gray-700  rounded-lg
+    flex flex-col text-center ;
 }
 
 .coordinate-label {
@@ -132,7 +140,7 @@ body {
 }
 
 .coordinate-value {
-    @apply text-xl font-mono;
+    @apply text-xl  text-gray-300;
 }
 
 /* ============================================
