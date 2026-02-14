@@ -157,7 +157,6 @@ function startGeolocation() {
 }
 function stopGeolocation() {
     if (watchId !== null) {
-        console.log('clearing watch')
         // 3. Use clearWatch to stop tracking
         navigator.geolocation.clearWatch(watchId);
         
