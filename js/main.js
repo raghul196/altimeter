@@ -104,7 +104,7 @@ async function geocodeAddress() {
     suggestionsBox.classList.add('hidden');
     
     if (!address) {
-        showError("Please enter an address.");
+        showError('error-message-ea');
         return;
     }
 
@@ -125,10 +125,10 @@ async function geocodeAddress() {
             hideError();
 
         } else {
-            showError('Address not found.');
+            showError('error-message-na');
         }
     } catch (error) {
-        showError('Error during geocoding.');
+        showError('error-message-ge');
         console.error('Geocoding error:', error);
     }
 }
@@ -185,7 +185,7 @@ async function reverseGeocode(latitude, longitude) {
 
 // Handle successful position update
 function handlePositionSuccess(position) {
-
+    console.log(position);
     const { latitude, longitude, altitude, accuracy, altitudeAccuracy } = position.coords;
     // Update coordinates display
     document.getElementById('latitude-value').textContent = latitude.toFixed(6);
@@ -217,24 +217,26 @@ function handlePositionSuccess(position) {
 
 // Handle position errors
 function handlePositionError(error) {
-    let errorMessage = '';
+
+
 
     switch(error.code) {
         case error.PERMISSION_DENIED:
-            errorMessage = 'Location permission denied. Please enable location access in your browser settings.';
+            id = 'error-message-pd'
+            document.getElementById('error-message-pd').classList.remove('hidden');
             break;
         case error.POSITION_UNAVAILABLE:
-            errorMessage = 'Location information unavailable. Please check your GPS settings.';
+            id = 'error-message-pu'
             break;
         case error.TIMEOUT:
-            errorMessage = 'Location request timed out. Please try again.';
+            id = 'error-message-to'
             break;
         default:
-            errorMessage = 'An unknown error occurred while getting your location.';
+            id = 'error-message-un';
             break;
     }
 
-    showError(errorMessage);
+    showError(id);
     console.error('Geolocation error:', error);
 }
 
@@ -291,14 +293,17 @@ function updateMap(latitude, longitude) {
 }
 
 // Show error message
-function showError(message) {
+function showError(id) {
     const errorDisplay = document.getElementById('error-display');
-    const errorMessage = document.getElementById('error-message');
+    errorDisplay.classList.remove('hidden');
 
-    if (errorDisplay && errorMessage) {
-        errorMessage.textContent = message;
-        errorDisplay.classList.remove('hidden');
-    }
+    // 2. Find all spans inside and hide them
+    const errorSpans = errorDisplay.querySelectorAll('span');
+    errorSpans.forEach(span => {
+        span.classList.add('hidden'); 
+    });
+
+    document.getElementById(id).classList.remove('hidden');
 }
 
 // Hide error message

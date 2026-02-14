@@ -110,34 +110,63 @@
                 <img src="./qr/en.png " alt= "qr cdode for website"/>
             </div>
             
-        
-
-                
 
 
             <!-- Error Display -->
             <div id="error-display" class="error-display hidden">
-                <span id="error-message"></span>
+                <span id="error-message-pd" class = "hidden">Location permission denied. Please enable location access in your browser settings.</span>
+                <span id="error-message-pu" class = "hidden">Location information unavailable. Please check your GPS settings.</span>
+                <span id="error-message-to" class = "hidden">Location request timed out. Please try again.</span>
+                <span id="error-message-un" class = "hidden">An unknown error occurred while getting your location.</span>
+                <span id="error-message-ea" class = "hidden">Please enter an address</span>
+                <span id="error-message-aa" class = "hidden">Address not found.</span>
+                <span id="error-message-ge" class = "hidden">Error during geocoding.</span>
             </div>
             
         </div>
 
-        <div>
-            <!-- user on computer, which lacks gps. qr code for this site so that user can scan -->
-        </div>
-        <div>
-            <!-- What is Altimeter -->
-        </div>
-
-        <div >
-            <!-- hot to use this Altimeter -->
-        </div>
-        <div>
-            <!-- faqs -->
-        </div>
+        <div class="info-container">
+            <section id="what-is-altimeter" class="info-section">
+                <h2>What is an Altimeter?</h2>
+                <p>An altimeter is a crucial instrument used to measure the altitude of an object above a fixed level, most commonly sea level. While traditional altimeters are instruments in aircraft, modern technology allows for digital altimeters, like this web-based tool, that leverage GPS and other sensors to determine elevation with remarkable accuracy.</p>
+            </section>
         
-        <div>
-
+            <section id="how-it-works" class="info-section">
+                <h2>How This Altimeter Functions</h2>
+                <p>This online altimeter provides your current elevation using a combination of technologies available in your device:</p>
+                <ul>
+                    <li><strong>GPS (Global Positioning System):</strong> For devices with GPS capabilities (most smartphones), we use the GPS signal to obtain a precise location, including latitude, longitude, and altitude.</li>
+                    <li><strong>IP Geolocation & Address Lookup:</strong> If GPS is unavailable or you enter an address, we use databases to find the elevation for that specific geographic coordinate. While convenient, this method may be less precise than a direct GPS reading.</li>
+                </ul>
+                <p>The tool prioritizes GPS for the highest accuracy and falls back to other methods when needed, ensuring you always get the best possible elevation data.</p>
+            </section>
+        
+            <section id="applications" class="info-section">
+                <h2>Where Can Altimeters Be Used?</h2>
+                <p>Altimeters are indispensable in a variety of fields and activities:</p>
+                <ul>
+                    <li><strong>Aviation:</strong> Pilots rely on altimeters for safe navigation and to maintain correct flight levels.</li>
+                    <li><strong>Hiking and Mountaineering:</strong> Climbers use altimeters to track their ascent, gauge their position on a map, and predict weather changes.</li>
+                    <li><strong>Scientific Research:</strong> Geologists, surveyors, and environmental scientists use elevation data for mapping terrain, studying landforms, and monitoring environmental changes.</li>
+                    <li><strong>Outdoor Recreation:</strong> Skiers, bikers, and drone pilots use altitude information for safety and performance tracking.</li>
+                </ul>
+            </section>
+        
+            <section id="faq" class="info-section">
+                <h2>Frequently Asked Questions (FAQ)</h2>
+                <div class="faq-item">
+                    <h3>Why is the altitude different from a sign or map?</h3>
+                    <p>Altitude readings can vary due to factors like signal accuracy, the data source (GPS vs. topographic data), and atmospheric pressure changes (for barometric altimeters). This tool uses geoid models to provide an altitude reading that is as close as possible to the true elevation above sea level.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How accurate is this online altimeter?</h3>
+                    <p>When using a device's GPS, the accuracy is typically within a few meters. When using address lookup, the accuracy depends on the quality of the elevation data for that specific location. For best results, use GPS on a mobile device with a clear view of the sky.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do I need to install anything?</h3>
+                    <p>No! This is a web-based tool. It runs directly in your browser without any installation required. Simply grant location permissions when prompted for the most accurate reading.</p>
+                </div>
+            </section>
         </div>
     </main>
 
