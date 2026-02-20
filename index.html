@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="./logo_48.png">
-    <title>What is My altitude?</title>
-    <meta name="description" content="Find your current altitude and elevation with our real-time online altimeter. Use your device's GPS to get an accurate answer to 'what is my altitude?', or look up the elevation for any address. The best altitude finder for hiking, outdoor activities, and curiosity.">
+    <title>What Is My Altitude? | Free Online Altimeter</title>
+    <meta name="description" content="Find your current altitude or elevation with our real-time online altimeter. Use your device's GPS to get an accurate answer to 'what is my altitude?', or look up the elevation for any address. The best altitude finder for hiking, outdoor activities, and curiosity.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.whatismyaltitude.com/">
+    <link rel="alternate" hreflang="de" href="https://www.whatismyaltitude.com/de/">
+    <link rel="alternate" hreflang="es" href="https://www.whatismyaltitude.com/es/">
+    <link rel="alternate" hreflang="fr" href="https://www.whatismyaltitude.com/fr/">
+    <link rel="alternate" hreflang="it" href="https://www.whatismyaltitude.com/it/">
+    <link rel="alternate" hreflang="pt" href="https://www.whatismyaltitude.com/pt/">
+    <link rel="alternate" hreflang="x-default" href="https://www.whatismyaltitude.com/">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -26,14 +34,9 @@
         },
         {
           "@type": "SoftwareApplication",
-          "name": "Online Altimeter - Altitude Finder",
+          "name": "Online Altimeter - Elevation Finder",
           "operatingSystem": "Any (Web)",
-          "applicationCategory": "Tool, UtilitiesApplication",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "ratingCount": "250"
-          },
+          "applicationCategory": "UtilitiesApplication",
           "offers": {
             "@type": "Offer",
             "price": "0",
@@ -80,13 +83,14 @@
     <meta property="og:description" content="Find your real-time altitude, elevation, and location using GPS and device sensors. Accurate altitude finder for outdoor activities, hiking, and more. whatismyaltitude.com">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.whatismyaltitude.com">
+    <meta property="og:image"  content="https://www.whatismyaltitude.com/logo_144.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Altimeter - Real-time Altitude & Sensors | What is My Altitude?">
     <meta name="twitter:description" content="Find your real-time altitude, elevation, and location using GPS and device sensors. Accurate altitude finder for outdoor activities, hiking, and more. whatismyaltitude.com">
     <meta name="twitter:url" content="https://www.whatismyaltitude.com">
-    
+    <meta name="twitter:image" content="https://www.whatismyaltitude.com/logo_144.png">
     <link rel="stylesheet" href="css/output.css">
 
 </head>
@@ -94,17 +98,16 @@
     <!-- Navigation Bar Removed -->
          <!-- Navigation -->
     <header class="navbar">
-        <img src = "logo_144.png" alt = "Logo"/>
+        <img src = "logo_144.png" alt = "What Is My Altitude - Free Online Altimeter Logo"/>
         <h1>What is my Altitude</h1>
     </header>
 
 
     <!-- Main Content -->
     <main class="main-container">
-        <div class="viewable-container">            
+        <div class="viewable-container">
             <!-- Data Cards Grid -->
 
-            <h2 class= "hidden">Address</h2>
             <div class="address-bar">
                 <button id="gps-button"  title="Use GPS">
                 <svg class="w-6 h-6 fill-current" viewBox="-4 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -128,8 +131,6 @@
             <div id="map" class="map-container"></div>
         
             <div class="coordinates-space">
-                <h2 class="hidden">Coordinates</h2>
-
                 <div class="coordinate-group">
                     <div class="coordinate-value" id="latitude-value">--</div>
                     <div class="coordinate-label">Latitude</div>                    
@@ -162,7 +163,7 @@
                     <strong>Accessing from Computer?</strong>
                     <span>typical computer lacks the required GPS sensor to give accurate elevation. Scan the QR code to use it from mobile.</span>
                 </div>
-                <img src="./qr/en.png " alt= "qr cdode for website"/>
+                <img src="./qr/en.png" alt="QR code to open What Is My Altitude on mobile"/>
             </div>
             
 
@@ -258,7 +259,9 @@
     <!-- Sticky Ad Footer -->
     <footer id="ad-footer" class="footer">
         <div class="footer-inner">
-            <div class="footer-text"></div>
+            <div class="footer-text">
+                <p>&copy; 2025 What Is My Altitude. All rights reserved. | <a href="/#privacy">Privacy Policy</a> | <a href="/#contact">Contact</a></p>
+            </div>
         </div>
     </footer>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
